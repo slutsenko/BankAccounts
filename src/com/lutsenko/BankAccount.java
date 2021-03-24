@@ -3,15 +3,19 @@ package com.lutsenko;
 public class BankAccount {
     private String name;
     private double count;
+    static double commissionForAdd = 0;
+    static double commissionForTransfer = 0;
+
 
 
     public BankAccount(String name, double count) {
         this.name = name;
         this.count = count;
+
     }
 
     public void add(double money) {
-        double commissionForAdd = money * 0.005;
+        this.commissionForAdd = money * 0.005;
         this.count = money - commissionForAdd;
 
     }
@@ -20,9 +24,10 @@ public class BankAccount {
         if (count < money) {
             throw new IllegalArgumentException("NOT ENOUGH MONEY");
         }
-        double commissionForTransfer = money * 0.01;
+        this.commissionForTransfer = money * 0.01;
         this.count = count - money;
         otherPerson.count = money - commissionForTransfer;
+
 
     }
 
